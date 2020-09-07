@@ -1,11 +1,12 @@
 # kb-coverage
 Resources accompanying the paper "Structured knowledge: Have we made progress?  An extrinsic study of KB coverage over 19 years"
-Contents of the submission:
+## Contents of the submission:
   1. aol_query.txt:                          text file containing queries from AOL
   2. marco_query.txt:                        text file containing queries ("marco" data)
   3. web_query.txt:                          text file containing queries ("web questions")
   4. query_filtering_cascaded.py:            python program to filter queries based on specific criteria 
   5. wiki_analysis.py:                       python program to analyse the wikipedia and wikidata entitty content based on revision dates
+  6. README.md:                              this file
 ## Getting started:
 The programs have been coded using Python 3. To run these one has to have Python 3 or above installed in their systems. Additionally you need the following packages to be         installed:
 - nltk:		            To work with language data.
