@@ -56,7 +56,7 @@ To execute the program from the command shell, do the following steps:
    
    
 
-- Output of executing statement (ii): This program will take input from a file that is specified by the variable "topicname" in the program (suppose that the input file is topicname.csv). It will likewise produce an outputfile named topicnmae_out.csv that contains the analysis. A sample input file is provided with this submission ("mini_sample-input.csv").
+- Output of executing statement (ii): This program will take input from a file that is specified by the variable "topicname" in the program (suppose that the input file is topicname.csv). It will likewise produce an outputfile named topicname_out.csv that contains the analysis. A sample input file is provided with this submission ("mini_sample-input.csv") which will thereby produce an output file named "mini_sample-input_out.csv".
 
 
 
