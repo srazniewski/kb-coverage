@@ -24,21 +24,21 @@ To execute the program from the command shell, do the following steps:
  - (ii) python wiki_analysis.py 
 ### This will generate all the below mentioned files:
 - Output of executing statement (i): This program will produce a file named "result_cascading.txt" that will contain all the statistics after the filters are applied to the respective query files. Apart from that it will also produce intermediate filtered versions of the query files namely:
- - Files derived out of "marco_query.txt":
+  - Files derived out of "marco_query.txt":
    - marco_question_word.csv
    - marco_first_question_word.csv
    - marco_named_entity.csv
    - marco_temporal_markers.csv
    - marco_how_to_can.csv
    - marco_all_filtered.csv
- - Files derived out of "web_query.txt":
+  - Files derived out of "web_query.txt":
    - web_question_word.csv
    - web_first_question_word.csv
    - web_named_entity.csv
    - web_temporal_markers.csv
    - web_how_to_can.csv
    - web_all_filtered.csv
- - Files derived out of "aol_query.txt":
+  - Files derived out of "aol_query.txt":
    - aol_question_word.csv
    - aol_first_question_word.csv
    - aol_named_entity.csv
