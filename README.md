@@ -25,12 +25,12 @@ To execute the program from the command shell, do the following steps:
 ### This will generate all the below mentioned files:
 - Output of executing statement (i): This program will produce a file named "result_cascading.txt" that will contain all the statistics after the filters are applied to the respective query files. Apart from that it will also produce intermediate filtered versions of the query files namely:
   - Files derived out of "marco_query.txt":
-   - marco_question_word.csv
-   - marco_first_question_word.csv
-   - marco_named_entity.csv
-   - marco_temporal_markers.csv
-   - marco_how_to_can.csv
-   - marco_all_filtered.csv
+    - marco_question_word.csv
+    - marco_first_question_word.csv
+    - marco_named_entity.csv
+    - marco_temporal_markers.csv
+    - marco_how_to_can.csv
+    - marco_all_filtered.csv
   - Files derived out of "web_query.txt":
    - web_question_word.csv
    - web_first_question_word.csv
