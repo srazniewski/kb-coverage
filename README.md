@@ -31,6 +31,7 @@ To execute the program from the command shell, do the following steps:
     - marco_temporal_markers.csv: file containing queries such that temporal markers are filtered out
     - marco_how_to_can.csv: file containing queries such that queries of the form "how to..." and "how can..." are filtered out
     - marco_all_filtered.csv: the final filtered file (where all the above filters have been applied)
+    
   Similary for the other query files, the following output files will be generated having similar meaning:
   - Files derived out of "web_query.txt":
      - web_question_word.csv
