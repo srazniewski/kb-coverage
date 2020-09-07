@@ -23,14 +23,15 @@ To execute the program from the command shell, do the following steps:
  - (i)  python query_filtering_cascaded.py
  - (ii) python wiki_analysis.py 
 ### This will generate all the below mentioned files:
-- Output of executing statement (i): This program will produce a file named "result_cascading.txt" that will contain all the statistics after the filters are applied to the respective query files. Apart from that it will also produce intermediate filtered versions of the query files namely:
+- Output of executing statement (i): This program will produce a file named "result_cascading.txt" that will contain all the statistics after the filters are applied to the respective query files. Apart from that it will also produce intermediate filtered versions of the query files namely (all filters are applied in a cascaded manner):
   - Files derived out of "marco_query.txt":
-    - marco_question_word.csv
-    - marco_first_question_word.csv
-    - marco_named_entity.csv
-    - marco_temporal_markers.csv
-    - marco_how_to_can.csv
-    - marco_all_filtered.csv
+    - marco_question_word.csv: filtered file containing queries that contain question words
+    - marco_first_question_word.csv: filtered file containing queries whose first word is a question word
+    - marco_named_entity.csv: filtered file containing queries that contain named entities
+    - marco_temporal_markers.csv: file containing queries such that temporal markers are filtered out
+    - marco_how_to_can.csv: file containing queries such that queries of the form "how to..." and "how can..." are filtered out
+    - marco_all_filtered.csv: the final filtered file (where all the above filters have been applied)
+  Similary for the other query files, the following output files will be generated having similar meaning:
   - Files derived out of "web_query.txt":
      - web_question_word.csv
      - web_first_question_word.csv
