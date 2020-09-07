@@ -48,9 +48,9 @@ To execute the program from the command shell, do the following steps:
      - aol_how_to_can.csv
      - aol_all_filtered.csv
  - The list of various question words, personal pronouns and temporal markers used for the above filtration are as follows:     
-  - question_word=["what","What","How","how","When","when","Where","where","Why","why","Which","which","who","Who"]
-  - personal_pronoun=["I","i","you","You","your","Your","my","My"]
-  - temporal_markers=["today","Today", "yesterday","Yesterday", "tomorrow","Tomorrow","last","Last","now","Now" ]
+    - question_word=["what","What","How","how","When","when","Where","where","Why","why","Which","which","who","Who"]
+    - personal_pronoun=["I","i","you","You","your","Your","my","My"]
+    - temporal_markers=["today","Today", "yesterday","Yesterday", "tomorrow","Tomorrow","last","Last","now","Now" ]
    
    
 
