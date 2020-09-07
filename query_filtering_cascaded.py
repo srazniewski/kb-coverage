@@ -68,7 +68,7 @@ def get_continuous_chunks(text):
 #txt = "Barack Obama is a great person and so is Michelle Obama." 
 #print(get_continuous_chunks(txt))
 
-def named_entity_filter(file_pointer):
+def named_entity_filter(file_pointer, file_ner):
     """
     This function keeps all the queries containing named entities and rejects the rest
     from the given file
@@ -86,7 +86,7 @@ def named_entity_filter(file_pointer):
     return count
 
 
-def how_to_can_filter(file_pointer):
+def how_to_can_filter(file_pointer, file_how):
     """
     This function filters out queries that contain the words like "how to"
     and "how can"
@@ -113,7 +113,7 @@ def how_to_can_filter(file_pointer):
 
 
 
-def temporal_markers_filter(file_pointer):
+def temporal_markers_filter(file_pointer, file_temporal):
     """
     This function filters out queries that contain temporal markers. The list of 
     temporal markers have been declared at the beginning of this program file
@@ -134,7 +134,7 @@ def temporal_markers_filter(file_pointer):
 
 
 
-def personal_pronoun_filter(file_pointer):
+def personal_pronoun_filter(file_pointer, file_pronoun):
     """
     This function filters out queries that contain personal pronouns. The list of 
     personal pronouns have been declared at the beginning of this program file
@@ -154,7 +154,7 @@ def personal_pronoun_filter(file_pointer):
 
 
 
-def question_word_filter(file_pointer):
+def question_word_filter(file_pointer, file_question):
     """
     This function selects queries that contain question words and rejects the rest. The list of 
     question words have been declared at the beginning of this program file
@@ -172,7 +172,7 @@ def question_word_filter(file_pointer):
                 break
     return count               
 
-def first_word_question(file_pointer):
+def first_word_question(file_pointer, file_first_question):
     """
     This function selects queries that contain any of the question words as the 
     first word of the query and rejects the rest. The list of 
@@ -195,203 +195,79 @@ def query_counter(file_pointer):
     return count
 
 
-
-
-"""
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%        MAIN       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-"""
-
-
-''' This file will have the output '''
-with open("result_cascading.txt","w",encoding="utf-8") as file_result:
-    
+def filtered_output(name):
+    """
+    This function creates the filtered output files, based on various filters, 
+    which are performed by calling the requisite functions
     
     """
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %%%%%%%%%%     MARCO DATA      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    """
     
-    
-    
-    print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%",file=file_result)
-    print("%%%%%%%%%%%%%%%%    MARCO DATA       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%",file=file_result)
-    print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%",file=file_result)
-            
     ''' keeping queries with only question words '''
-    with open("json_query.txt", "r", encoding="utf-8") as file_marco:
-        with open("marco_question_word.csv","w",encoding="utf-8") as file_question:
-            count=question_word_filter(file_marco)
+    with open(name+"_query.txt", "r", encoding="utf-8") as file_pointer:
+        with open(name+"_question_word.csv","w",encoding="utf-8") as file_question:
+            count=question_word_filter(file_pointer,file_question)
             #print("No. of sentences with question word:",count )
             print("No. of sentences with question word:",count,file=file_result )
             
-            
     ''' keeping queries with only first words as question words '''
-    with open("marco_question_word.csv", "r", encoding="utf-8") as file_marco:
-        with open("marco_first_question_word.csv","w",encoding="utf-8") as file_first_question:
-            count2=first_word_question(file_marco)
+    with open(name+"_question_word.csv", "r", encoding="utf-8") as file_pointer:
+        with open(name+"_first_question_word.csv","w",encoding="utf-8") as file_first_question:
+            count2=first_word_question(file_pointer, file_first_question)
             #print("No. of sentences with first word as question word:",count2)
             print("No. of sentences with first word as question word:",count2,file=file_result )
             
     ''' keeping queries that contain named entities '''
-    with open("marco_first_question_word.csv", "r", encoding="utf-8") as file_marco:
-        with open("marco_named_entity.csv","w",encoding="utf-8") as file_ner:
-            count=named_entity_filter(file_marco)
+    with open(name+"_first_question_word.csv", "r", encoding="utf-8") as file_pointer:
+        with open(name+"_named_entity.csv","w",encoding="utf-8") as file_ner:
+            count=named_entity_filter(file_pointer, file_ner)
             #print("No. of sentences with named entities:",count )             
             print("No. of sentences with named entities:",count,file=file_result ) 
             
     ''' filtering out queries that contain temporal markers '''
-    with open("marco_named_entity.csv", "r", encoding="utf-8") as file_marco:
-        with open("marco_temporal_markers.csv","w",encoding="utf-8") as file_temporal:
-            count=temporal_markers_filter(file_marco)
+    with open(name+"_named_entity.csv", "r", encoding="utf-8") as file_pointer:
+        with open(name+"_temporal_markers.csv","w",encoding="utf-8") as file_temporal:
+            count=temporal_markers_filter(file_pointer, file_temporal)
             #print("No. of sentences after removing temporal markers:",count )
             print("No. of sentences after removing temporal markers:",count,file=file_result )
     
     
     ''' filtering out queries that contain questions like 'how to..." and "how can ..." '''
-    with open("marco_temporal_markers.csv", "r", encoding="utf-8") as file_marco:
-        with open("marco_how_to_can.csv","w",encoding="utf-8") as file_how:
-            count=how_to_can_filter(file_marco)
+    with open(name+"_temporal_markers.csv", "r", encoding="utf-8") as file_pointer:
+        with open(name+"_how_to_can.csv","w",encoding="utf-8") as file_how:
+            count=how_to_can_filter(file_pointer, file_how)
             #print("No. of sentences after removing how to/can:",count )       
             print("No. of sentences after removing how to/can:",count,file=file_result )         
             
     ''' filtering out queries that contain personal pronouns '''
-    with open("marco_how_to_can.csv", "r", encoding="utf-8") as file_marco:
-        with open("marco_all_filtered.csv","w",encoding="utf-8") as file_pronoun:
-            count=personal_pronoun_filter(file_marco)
+    with open(name+"_how_to_can.csv", "r", encoding="utf-8") as file_pointer:
+        with open(name+"_all_filtered.csv","w",encoding="utf-8") as file_pronoun:
+            count=personal_pronoun_filter(file_pointer, file_pronoun)
             #print("No. of sentences after removing personal pronouns:",count )
             print("No. of sentences after removing personal pronouns:",count,file=file_result)
 
     ''' counting the number of queries left after applying all the filters in a cascading manner'''   
-    with open("marco_all_filtered.csv", "r", encoding="utf-8") as file_marco:
-        query_counts=query_counter(file_marco)
+    with open(name+"_all_filtered.csv", "r", encoding="utf-8") as file_pointer:
+        query_counts=query_counter(file_pointer)
         print("Total number of queries afer all filtering:",query_counts,file=file_result)
           
-            
-    """
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %%%%%%%%%%     WEB DATA      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    """
+         
     
+
+''' This file will have the output '''
+with open("result_cascading.txt","w",encoding="utf-8") as file_result:
+    
+    print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%",file=file_result)
+    print("%%%%%%%%%%%%%%%%    MARCO DATA       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%",file=file_result)
+    print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%",file=file_result)
+    filtered_output("marco")
+   
     print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%",file=file_result)
     print("%%%%%%%%%%%%%%%%    WEB DATA         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%",file=file_result)
     print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%",file=file_result)
-    
-   
-    ''' keeping queries with only question words '''
-    with open("web_query.txt", "r", encoding="utf-8") as file_web:
-        with open("web_question_word.csv","w",encoding="utf-8") as file_question:
-            count=question_word_filter(file_web)
-            #print("No. of sentences with question word:",count )
-            print("No. of sentences with question word:",count,file=file_result )
-
-    ''' keeping queries with only first words as question words '''
-    with open("web_question_word.csv", "r", encoding="utf-8") as file_web:
-        with open("web_first_question_word.csv","w",encoding="utf-8") as file_first_question:
-            count2=first_word_question(file_web)
-            #print("No. of sentences with first word as question word:",count2)
-            print("No. of sentences with first word as question word:",count2,file=file_result)
-            
-    
-    ''' keeping queries that contain named entities '''
-    with open("web_first_question_word.csv", "r", encoding="utf-8") as file_web:
-        with open("web_named_entity.csv","w",encoding="utf-8") as file_ner:
-            count=named_entity_filter(file_web)
-            #print("No. of sentences with named entities:",count )   
-            print("No. of sentences with named entities:",count,file=file_result )  
-
-    ''' filtering out queries that contain temporal markers '''
-    with open("web_named_entity.csv", "r", encoding="utf-8") as file_web:
-        with open("web_temporal_markers.csv","w",encoding="utf-8") as file_temporal:
-            count=temporal_markers_filter(file_web)
-            #print("No. of sentences after removing temporal markers:",count )
-            print("No. of sentences after removing temporal markers:",count,file=file_result )
-            
-            
-    ''' filtering out queries that contain questions like 'how to..." and "how can ..." '''
-    with open("web_temporal_markers.csv", "r", encoding="utf-8") as file_web:
-        with open("web_how_to_can.csv","w",encoding="utf-8") as file_how:
-            count=how_to_can_filter(file_web)
-            #print("No. of sentences after removing how to/can:",count )              
-            print("No. of sentences after removing how to/can:",count,file=file_result ) 
-
-    ''' filtering out queries that contain personal pronouns '''
-    with open("web_how_to_can.csv", "r", encoding="utf-8") as file_web:
-        with open("web_all_filtered.csv","w",encoding="utf-8") as file_pronoun:
-            count=personal_pronoun_filter(file_web)
-            #print("No. of sentences after removing personal pronouns:",count )
-            print("No. of sentences after removing personal pronouns:",count,file=file_result )
-    
-    ''' counting the number of queries left after applying all the filters in a cascading manner'''   
-    with open("web_all_filtered.csv", "r", encoding="utf-8") as file_web:
-        query_counts=query_counter(file_web)
-        print("Total number of queries afer all filtering:",query_counts,file=file_result)
-            
-         
-    """
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %%%%%%%%%%     AOL DATA      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    """
+    filtered_output("web")
     
     print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%",file=file_result)
     print("%%%%%%%%%%%%%%%%    AOL DATA         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%",file=file_result)
     print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%",file=file_result)
-    
-    ''' keeping queries with only question words '''
-    with open("aol_query.txt", "r", encoding="utf-8") as file_aol:
-        with open("aol_question_word.csv","w",encoding="utf-8") as file_question:
-            count=question_word_filter(file_aol)
-            #print("No. of sentences with question word:",count )
-            print("No. of sentences with question word:",count,file=file_result )
-            
-    ''' keeping queries with only first words as question words '''
-    with open("aol_question_word.csv", "r", encoding="utf-8") as file_aol:
-        with open("aol_first_question_word.csv","w",encoding="utf-8") as file_first_question:
-            count2=first_word_question(file_aol)
-            #print("No. of sentences with first word as question word:",count2)
-            print("No. of sentences with first word as question word:",count2,file=file_result)
-            
-    
-    ''' keeping queries that contain named entities '''
-    with open("aol_first_question_word.csv", "r", encoding="utf-8") as file_aol:
-        with open("aol_named_entity.csv","w",encoding="utf-8") as file_ner:
-            count=named_entity_filter(file_aol)
-            #print("No. of sentences with named entities:",count ) 
-            print("No. of sentences with named entities:",count,file=file_result ) 
-    
-    
-    
-    
-    ''' filtering out queries that contain temporal markers '''
-    with open("aol_named_entity.csv", "r", encoding="utf-8") as file_aol:
-        with open("aol_temporal_markers.csv","w",encoding="utf-8") as file_temporal:
-            count=temporal_markers_filter(file_aol)
-            #print("No. of sentences after removing temporal markers:",count )
-            print("No. of sentences after removing temporal markers:",count,file=file_result )
-            
-    ''' filtering out queries that contain questions like 'how to..." and "how can ..." '''
-    with open("aol_temporal_markers.csv", "r", encoding="utf-8") as file_aol:
-        with open("aol_how_to_can.csv","w",encoding="utf-8") as file_how:
-            count=how_to_can_filter(file_aol)
-            #print("No. of sentences after removing how to/can:",count )    
-            print("No. of sentences after removing how to/can:",count,file=file_result )    
-    
-    ''' filtering out queries that contain personal pronouns '''
-    with open("aol_how_to_can.csv", "r", encoding="utf-8") as file_aol:
-        with open("aol_all_filtered.csv","w",encoding="utf-8") as file_pronoun:
-            count=personal_pronoun_filter(file_aol)
-            #print("No. of sentences after removing personal pronouns:",count )
-            print("No. of sentences after removing personal pronouns:",count,file=file_result )
-    
-    
-    ''' counting the number of queries left after applying all the filters in a cascading manner'''   
-    with open("aol_all_filtered.csv", "r", encoding="utf-8") as file_aol:
-        query_counts=query_counter(file_aol)
-        print("Total number of queries afer all filtering:",query_counts,file=file_result)
-            
-            
-            
+    filtered_output("aol")
+   
