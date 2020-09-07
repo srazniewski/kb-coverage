@@ -30,7 +30,7 @@ To execute the program from the command shell, do the following steps:
     - marco_named_entity.csv: filtered file containing queries that contain named entities
     - marco_temporal_markers.csv: file containing queries such that temporal markers are filtered out
     - marco_how_to_can.csv: file containing queries such that queries of the form "how to..." and "how can..." are filtered out
-    - marco_all_filtered.csv: the final filtered file (where all the above filters have been applied)
+    - marco_all_filtered.csv: file containing queries such that queries containing personal pronouns are filtered out
     
   Similary for the other query files, the following output files will be generated having similar meaning:
   - Files derived out of "web_query.txt":
@@ -47,6 +47,10 @@ To execute the program from the command shell, do the following steps:
      - aol_temporal_markers.csv
      - aol_how_to_can.csv
      - aol_all_filtered.csv
+ - The list of various question words, personal pronouns and temporal markers used for the above filtration are as follows:     
+  - question_word=["what","What","How","how","When","when","Where","where","Why","why","Which","which","who","Who"]
+  - personal_pronoun=["I","i","you","You","your","Your","my","My"]
+  - temporal_markers=["today","Today", "yesterday","Yesterday", "tomorrow","Tomorrow","last","Last","now","Now" ]
    
    
 
