@@ -32,19 +32,19 @@ To execute the program from the command shell, do the following steps:
     - marco_how_to_can.csv
     - marco_all_filtered.csv
   - Files derived out of "web_query.txt":
-   - web_question_word.csv
-   - web_first_question_word.csv
-   - web_named_entity.csv
-   - web_temporal_markers.csv
-   - web_how_to_can.csv
-   - web_all_filtered.csv
+     - web_question_word.csv
+     - web_first_question_word.csv
+     - web_named_entity.csv
+     - web_temporal_markers.csv
+     - web_how_to_can.csv
+     - web_all_filtered.csv
   - Files derived out of "aol_query.txt":
-   - aol_question_word.csv
-   - aol_first_question_word.csv
-   - aol_named_entity.csv
-   - aol_temporal_markers.csv
-   - aol_how_to_can.csv
-   - aol_all_filtered.csv
+     - aol_question_word.csv
+     - aol_first_question_word.csv
+     - aol_named_entity.csv
+     - aol_temporal_markers.csv
+     - aol_how_to_can.csv
+     - aol_all_filtered.csv
    
    
 
