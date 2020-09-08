@@ -74,7 +74,6 @@ def GetWDQcode(Qcode_pageTitle,rev_id):
                             
     return QcodeWD_list
 
-
 def GetWPtext(pageTitle):
     '''
     This function retrieves the text of wikipedia of the given entity from the cource code of the 
