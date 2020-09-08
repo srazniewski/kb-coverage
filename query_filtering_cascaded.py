@@ -47,7 +47,6 @@ def get_continuous_chunks(text):
     prev = None
     continuous_chunk = []
     current_chunk = []
-
     for i in chunked:
         if type(i) == Tree:
             current_chunk.append(" ".join([token for token, pos in i.leaves()]))
@@ -80,7 +79,6 @@ def named_entity_filter(file_pointer, file_ner):
         if ner_list:
             file_ner.write(line)
             count+=1
-            
         else:
             continue
     return count
@@ -162,11 +160,9 @@ def question_word_filter(file_pointer, file_question):
     count=0
     for line in file_pointer:
             
-            
         for word in line.split():
                 
             if word in question_word:
-                    
                 file_question.write(line)
                 count+=1
                 break
